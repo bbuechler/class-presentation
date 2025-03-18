@@ -13,7 +13,7 @@ def hello():
     """
     
     user = who()
-    print (f"Welcome {user}")
+    print (f"Welcome to new {user}!")
      
 
 if __name__ == '__main__':
