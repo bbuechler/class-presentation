@@ -1,0 +1,86 @@
+name: Basic Image Builder
+
+on:
+  workflow_dispatch:
+    inputs:
+      image-name:
+        description: Name for docker Image
+        default: "basic_image"
+      save-image:
+        description: Build+Upload
+        type: choice
+        default: "NO"
+        options:
+          - YES
+          - NO
+
+  schedule:
+    # Do a build Monday Morning
+    - cron: "0 7 * * 1"
+
+  push:
+    paths:
+      # Anything in the build directory changes:
+      - "build/**"
+      # Ignore changes to workflows:
+      - "!.github/workflows/*.yaml"
+      # Ignore readme files:
+      - "!**/*.md"
+      # Trigger on any scripts
+      - "**/*.py"
+      - "**/*.sh"
+    branches:
+      - main
+    tags:
+      - "v*.*.*"
+
+jobs:
+
+  validate-code:
+    runs-on: ubuntu-latest
+    env:
+      USER: TestUser
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: lint
+        uses: advanced-security/python-lint-code-scanning-action@v1
+        with:
+          linter: flake8
+
+      - name: test
+        run: |
+          output=$(python3 hello.py)
+          validation="Welcome to new TestUser"
+          
+          if ! echo "$output" | grep -q "validation"; then
+            echo "Test Failed
+            exit 1
+          else
+            echo "All Tests Passed"
+            exit 0
+          fi
+
+  docker-build:
+    needs:
+      - validate-code
+    if: ${{ inputs.save-image != 'NO' }}
+    uses: ./.github/workflows/reusable-docker-build.yaml
+    with:
+      image-name: ${{ inputs.image-name }}
+      dockerfile: "build/basic.Dockerfile"
+
+  report-build:
+    needs:
+      - docker-build
+    runs-on: ubuntu-latest
+    image: python:3.12
+    steps:
+      - name: CDK Synth Stack
+        run: |
+          echo "Build image: ${{ needs.docker-build.outputs.container-uri }}"
+
+
+
