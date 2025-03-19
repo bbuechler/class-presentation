@@ -1,3 +1,5 @@
 import os
 
-print(f"This should fail checks - {invalid_variable}")
+invalid_variable = "Good Job!"
+
+print(f"This should NOT fail checks - {invalid_variable}")
