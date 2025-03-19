@@ -56,5 +56,6 @@ jobs:
           build-args: ${{ inputs.build-args }}
           tags: |
             ${{ steps.container.outputs.uri }}:dev
+            ${{ steps.container.outputs.uri }}:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
