@@ -55,7 +55,7 @@ jobs:
           pull: true         # Always pull the latest base image before building
           build-args: ${{ inputs.build-args }}
           tags: |
-            ${{ steps.container.outputs.uri }}:dev
+            ${{ steps.container.outputs.uri }}:${{ inputs.tagname || github.ref_name }}
             ${{ steps.container.outputs.uri }}:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
