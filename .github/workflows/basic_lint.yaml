@@ -1,3 +1,5 @@
+name: Basic Linting
+
 on: [push, pull_request]
 
 jobs:
