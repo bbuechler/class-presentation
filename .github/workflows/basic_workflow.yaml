@@ -75,15 +75,14 @@ jobs:
       - docker-build
     runs-on: ubuntu-latest
     container:
-      image: python:3.12
+      image: ${{ needs.docker-build.outputs.container-uri }}
       volumes:
         - ${{ github.workspace }}:/code
     steps:
-      - name: echo
-        run: |
-          echo "Build image: ${{ needs.docker-build.outputs.container-uri }}"
       - name: run
         run: python3 /app/hello.py
+      - name: run
+        run: python3 /code/hello.py
 
 
 
