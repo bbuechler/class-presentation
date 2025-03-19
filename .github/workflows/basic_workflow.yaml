@@ -77,13 +77,13 @@ jobs:
     container:
       image: python:3.12
       volumes:
-        - ${{ github.workspace }}:/run
+        - ${{ github.workspace }}:/code
     steps:
       - name: echo
         run: |
           echo "Build image: ${{ needs.docker-build.outputs.container-uri }}"
       - name: run
-        run: python3 /run/hello.py
+        run: python3 /app/hello.py
 
 
 
