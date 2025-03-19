@@ -11,8 +11,8 @@ on:
         type: choice
         default: "NO"
         options:
-          - YES
-          - NO
+          - "YES"
+          - "NO"
 
   schedule:
     # Do a build Monday Morning
