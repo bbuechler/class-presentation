@@ -55,7 +55,7 @@ jobs:
           
           if ! echo "$output" | grep -q "$validation"; then
             echo "Test Failed"
-            echo "-- '$output' -- DOES NOT contain '$validation"'
+            echo "-- '$output' -- DOES NOT contain '$validation'"
             exit 1
           else
             echo "All Tests Passed"
