@@ -53,8 +53,8 @@ jobs:
           output=$(python3 hello.py)
           validation="Welcome to new TestUser"
           
-          if ! echo "$output" | grep -q "validation"; then
-            echo "Test Failed
+          if ! echo "$output" | grep -q "$validation"; then
+            echo "Test Failed"
             exit 1
           else
             echo "All Tests Passed"
