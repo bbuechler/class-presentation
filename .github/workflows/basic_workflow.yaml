@@ -76,11 +76,16 @@ jobs:
     needs:
       - docker-build
     runs-on: ubuntu-latest
-    image: python:3.12
+    container:
+      image: python:3.12
+      volumes:
+        - ${{ github.workspace }}:/run
     steps:
-      - name: CDK Synth Stack
+      - name: echo
         run: |
           echo "Build image: ${{ needs.docker-build.outputs.container-uri }}"
+      - name: run
+        run: python3 /run/hello.py
 
 
 
