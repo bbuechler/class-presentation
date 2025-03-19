@@ -1,4 +1,4 @@
-Name: Reusble Docker Build
+name: Reusble Docker Build
 
 on:
   workflow_call:
