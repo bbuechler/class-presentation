@@ -51,7 +51,7 @@ jobs:
       - name: test
         run: |
           output=$(python3 hello.py)
-          validation="Welcome to new TestUser"
+          validation="Welcome to TestUser"
           
           if ! echo "$output" | grep -q "$validation"; then
             echo "Test Failed"
