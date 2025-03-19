@@ -45,9 +45,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: lint
-        uses: py-actions/flake8@v2
-
       - name: test
         run: |
           output=$(python3 hello.py)

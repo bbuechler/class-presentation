@@ -1,0 +1,13 @@
+on: [push, pull_request]
+
+jobs:
+
+  lint-code:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: lint
+        uses: py-actions/flake8@v2
