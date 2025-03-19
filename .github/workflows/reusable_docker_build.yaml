@@ -15,9 +15,12 @@ on:
       build-args:
         required: false
         type: string
+    outputs:
+      container-uri:
+        description: "URI of new image"
+        value: ${{ jobs.docker-build.outputs.container-uri }}
 
 jobs:
-
   docker-build:
     environment: dev
     runs-on: ubuntu-latest
