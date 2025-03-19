@@ -39,7 +39,7 @@ jobs:
   validate-code:
     runs-on: ubuntu-latest
     env:
-      USER: TestUser
+      USER: ${{ vars.DEFAULT_USER }}
 
     steps:
       - name: Checkout
