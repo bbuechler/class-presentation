@@ -67,7 +67,7 @@ jobs:
     needs:
       - validate-code
     if: ${{ inputs.save-image != 'NO' }}
-    uses: ./.github/workflows/reusable-docker-build.yaml
+    uses: ./.github/workflows/reusable_docker_build.yaml
     with:
       image-name: ${{ inputs.image-name }}
       dockerfile: "build/basic.Dockerfile"
