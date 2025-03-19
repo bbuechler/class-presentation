@@ -38,6 +38,7 @@ jobs:
 
   validate-code:
     runs-on: ubuntu-latest
+    environment: dev
     env:
       USER: ${{ vars.DEFAULT_USER }}
 
