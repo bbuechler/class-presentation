@@ -75,7 +75,7 @@ jobs:
       - docker-build
     runs-on: ubuntu-latest
     container:
-      image: ${{ needs.docker-build.outputs.container-uri }}
+      image: ${{ needs.docker-build.outputs.container-uri }}:${{ inputs.tagname || github.ref_name }}
       volumes:
         - ${{ github.workspace }}:/code
     steps:
