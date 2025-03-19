@@ -67,7 +67,7 @@ jobs:
     if: ${{ inputs.save-image != 'NO' }}
     uses: ./.github/workflows/reusable_docker_build.yaml
     with:
-      image-name: ${{ inputs.image-name || "basic_image" }}
+      image-name: ${{ inputs.image-name || 'basic_image' }}
       dockerfile: "build/basic.Dockerfile"
 
   report-build:
