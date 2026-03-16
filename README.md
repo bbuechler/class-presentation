@@ -1,3 +1,3 @@
 # class-presentation
 
-This is for CS F372
+This is for a class
